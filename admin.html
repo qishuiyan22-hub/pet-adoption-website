@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理宠物 - 宠遇</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#FF9E9E',
+                        accent: '#FFD166',
+                        dark: '#333333',
+                        light: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-gradient {
+                background: linear-gradient(135deg, #FF6B6B 0%, #FF9E9E 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-heart text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-dark">宠遇</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors">关于我们</a>
+                <a href="contact.html" class="text-dark hover:text-primary transition-colors">联系我们</a>
+            </nav>
+            <div class="flex items-center space-x-4" id="auth-container">
+                <a href="login.html" class="text-dark hover:text-primary transition-colors">登录</a>
+                <a href="register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors">注册</a>
+            </div>
+            <button class="md:hidden text-dark" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white shadow-md absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors py-2">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors py-2">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors py-2">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="contact.html" class="text-dark hover:text-primary transition-colors py-2">联系我们</a>
+                <div id="mobile-auth-container" class="flex flex-col space-y-2 pt-2 border-t">
+                    <a href="login.html" class="text-dark hover:text-primary transition-colors py-2">登录</a>
+                    <a href="register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors text-center">注册</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 管理导航 -->
+    <section class="py-6 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex space-x-4">
+                <button class="admin-nav-btn active bg-primary text-white px-4 py-2 rounded" data-target="pets-section">宠物管理</button>
+                <button class="admin-nav-btn bg-gray-200 text-dark px-4 py-2 rounded" data-target="agencies-section">合作机构管理</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 宠物管理 -->
+    <section id="pets-section" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-dark mb-4">宠物管理</h2>
+                <p class="text-gray-600">管理待领养的宠物信息</p>
+            </div>
+
+            <!-- 添加宠物表单 -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-dark mb-4">添加新宠物</h3>
+                <form id="add-pet-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">名称</label>
+                            <input type="text" id="pet-name" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入宠物名称" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">类型</label>
+                            <select id="pet-type" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                <option value="cat">猫咪</option>
+                                <option value="dog">狗狗</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">年龄</label>
+                            <input type="text" id="pet-age" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="如：1岁、3个月" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">性别</label>
+                            <select id="pet-gender" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                <option value="male">公</option>
+                                <option value="female">母</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">性格</label>
+                            <select id="pet-personality" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                <option value="active">活泼</option>
+                                <option value="calm">安静</option>
+                                <option value="friendly">友善</option>
+                                <option value="shy">害羞</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">照片URL</label>
+                            <input type="text" id="pet-image" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入照片URL或保持空白">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">描述</label>
+                        <textarea id="pet-description" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" rows="3" placeholder="请输入宠物描述" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-md hover:bg-secondary transition-colors font-medium">
+                        <i class="fa fa-plus mr-2"></i>添加宠物
+                    </button>
+                </form>
+            </div>
+
+            <!-- 宠物列表 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-dark mb-4">宠物列表</h3>
+                <div id="pet-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 宠物卡片将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作机构管理 -->
+    <section id="agencies-section" class="py-12 bg-gray-50 hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-dark mb-4">合作机构管理</h2>
+                <p class="text-gray-600">管理宠物寄养合作机构</p>
+            </div>
+
+            <!-- 添加合作机构表单 -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-dark mb-4">添加新合作机构</h3>
+                <form id="add-agency-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">机构名称</label>
+                            <input type="text" id="agency-name" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入机构名称" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">区域</label>
+                            <input type="text" id="agency-area" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="如：仓山区、台江区" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">价格</label>
+                            <input type="text" id="agency-price" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="如：¥80/天起" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">评分</label>
+                            <input type="text" id="agency-rating" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="如：4.5 (120条评价)" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">描述</label>
+                        <textarea id="agency-description" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" rows="3" placeholder="请输入机构描述" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-md hover:bg-secondary transition-colors font-medium">
+                        <i class="fa fa-plus mr-2"></i>添加机构
+                    </button>
+                </form>
+            </div>
+
+            <!-- 机构列表 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-dark mb-4">机构列表</h3>
+                <div id="agency-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 机构卡片将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-heart text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">宠遇</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">给每个生命一个温暖的家，让它们感受到爱与关怀。</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="adopt.html" class="text-gray-400 hover:text-primary transition-colors">领养宠物</a></li>
+                        <li><a href="foster.html" class="text-gray-400 hover:text-primary transition-colors">宠物寄养</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">服务支持</h3>
+                    <ul class="space-y-2">
+                        <li><a href="adopt-guide.html" class="text-gray-400 hover:text-primary transition-colors">领养指南</a></li>
+                        <li><a href="foster-guide.html" class="text-gray-400 hover:text-primary transition-colors">寄养指南</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-primary transition-colors">隐私政策</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-primary transition-colors">用户协议</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">福建省福州市连江县凤城镇龙华二区</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">13705028226</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">3133785281@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 宠遇 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 管理导航切换
+        document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                
+                // 切换按钮状态
+                document.querySelectorAll('.admin-nav-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-primary', 'text-white');
+                    b.classList.add('bg-gray-200', 'text-dark');
+                });
+                this.classList.add('active', 'bg-primary', 'text-white');
+                this.classList.remove('bg-gray-200', 'text-dark');
+                
+                // 切换内容区域
+                document.querySelectorAll('#pets-section, #agencies-section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                document.getElementById(target).classList.remove('hidden');
+            });
+        });
+
+        // 宠物管理
+        const Pets = {
+            storageKey: 'pet_pets',
+
+            getPets: function() {
+                const pets = localStorage.getItem(this.storageKey);
+                return pets ? JSON.parse(pets) : [];
+            },
+
+            savePet: function(pet) {
+                const pets = this.getPets();
+                pet.id = Date.now();
+                pets.push(pet);
+                localStorage.setItem(this.storageKey, JSON.stringify(pets));
+            },
+
+            deletePet: function(id) {
+                const pets = this.getPets();
+                const filtered = pets.filter(p => p.id !== id);
+                localStorage.setItem(this.storageKey, JSON.stringify(filtered));
+            },
+
+            getTypeText: function(type) {
+                switch(type) {
+                    case 'cat': return '猫咪';
+                    case 'dog': return '狗狗';
+                    case 'other': return '其他';
+                    default: return type;
+                }
+            },
+
+            getGenderText: function(gender) {
+                return gender === 'male' ? '公' : '母';
+            },
+
+            getPersonalityText: function(personality) {
+                switch(personality) {
+                    case 'active': return '活泼';
+                    case 'calm': return '安静';
+                    case 'friendly': return '友善';
+                    case 'shy': return '害羞';
+                    default: return personality;
+                }
+            }
+        };
+
+        function renderPets() {
+            const petList = document.getElementById('pet-list');
+            const pets = Pets.getPets();
+
+            if (pets.length === 0) {
+                petList.innerHTML = '<p class="text-gray-500 col-span-3 text-center py-8">暂无宠物信息</p>';
+                return;
+            }
+
+            petList.innerHTML = '';
+            pets.forEach(pet => {
+                const petCard = document.createElement('div');
+                petCard.className = 'bg-white rounded-lg overflow-hidden shadow-md card-hover';
+                petCard.innerHTML = `
+                    <img src="${pet.image || 'photo/动物1.png'}" alt="${pet.name}" class="w-full h-48 object-cover bg-gray-100">
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-dark mb-2">${pet.name}</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded">${Pets.getTypeText(pet.type)}</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">${pet.age}</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">${Pets.getGenderText(pet.gender)}</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">${Pets.getPersonalityText(pet.personality)}</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">${pet.description}</p>
+                        <button class="delete-btn w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors" data-pet-id="${pet.id}">
+                            <i class="fa fa-trash mr-2"></i>删除
+                        </button>
+                    </div>
+                `;
+                petList.appendChild(petCard);
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const petId = parseInt(this.getAttribute('data-pet-id'));
+                    if (confirm('确定要删除这只宠物吗？')) {
+                        Pets.deletePet(petId);
+                        renderPets();
+                    }
+                });
+            });
+        }
+
+        document.getElementById('add-pet-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pet = {
+                name: document.getElementById('pet-name').value,
+                type: document.getElementById('pet-type').value,
+                age: document.getElementById('pet-age').value,
+                gender: document.getElementById('pet-gender').value,
+                personality: document.getElementById('pet-personality').value,
+                description: document.getElementById('pet-description').value,
+                image: document.getElementById('pet-image').value || 'photo/动物1.png'
+            };
+            Pets.savePet(pet);
+            alert('宠物添加成功！');
+            this.reset();
+            renderPets();
+        });
+
+        // 合作机构管理
+        const Agencies = {
+            storageKey: 'pet_agencies',
+
+            getAgencies: function() {
+                const agencies = localStorage.getItem(this.storageKey);
+                return agencies ? JSON.parse(agencies) : [];
+            },
+
+            saveAgency: function(agency) {
+                const agencies = this.getAgencies();
+                agency.id = Date.now();
+                agencies.push(agency);
+                localStorage.setItem(this.storageKey, JSON.stringify(agencies));
+            },
+
+            deleteAgency: function(id) {
+                const agencies = this.getAgencies();
+                const filtered = agencies.filter(a => a.id !== id);
+                localStorage.setItem(this.storageKey, JSON.stringify(filtered));
+            }
+        };
+
+        function renderAgencies() {
+            const agencyList = document.getElementById('agency-list');
+            const agencies = Agencies.getAgencies();
+
+            if (agencies.length === 0) {
+                agencyList.innerHTML = '<p class="text-gray-500 col-span-3 text-center py-8">暂无机构信息</p>';
+                return;
+            }
+
+            agencyList.innerHTML = '';
+            agencies.forEach(agency => {
+                const agencyCard = document.createElement('div');
+                agencyCard.className = 'bg-white rounded-lg overflow-hidden shadow-md card-hover';
+                agencyCard.innerHTML = `
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-dark mb-2">${agency.name}</h4>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-accent">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                            <span class="text-gray-600 ml-2">${agency.rating}</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">${agency.description}</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-primary font-bold">${agency.price}</span>
+                            <span class="text-gray-600"><i class="fa fa-map-marker mr-1"></i> ${agency.area}</span>
+                        </div>
+                        <button class="delete-agency-btn w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors" data-agency-id="${agency.id}">
+                            <i class="fa fa-trash mr-2"></i>删除
+                        </button>
+                    </div>
+                `;
+                agencyList.appendChild(agencyCard);
+            });
+
+            document.querySelectorAll('.delete-agency-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const agencyId = parseInt(this.getAttribute('data-agency-id'));
+                    if (confirm('确定要删除这个机构吗？')) {
+                        Agencies.deleteAgency(agencyId);
+                        renderAgencies();
+                    }
+                });
+            });
+        }
+
+        document.getElementById('add-agency-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const agency = {
+                name: document.getElementById('agency-name').value,
+                area: document.getElementById('agency-area').value,
+                price: document.getElementById('agency-price').value,
+                rating: document.getElementById('agency-rating').value,
+                description: document.getElementById('agency-description').value
+            };
+            Agencies.saveAgency(agency);
+            alert('机构添加成功！');
+            this.reset();
+            renderAgencies();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = Users.getCurrentUser();
+            if (!currentUser || !Users.isAdmin(currentUser.email)) {
+                alert('您没有权限访问此页面，请以管理员身份登录');
+                window.location.href = 'index.html';
+                return;
+            }
+            renderPets();
+            renderAgencies();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 宠遇</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#FF9E9E',
+                        accent: '#FFD166',
+                        dark: '#333333',
+                        light: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            .bg-gradient {
+                background: linear-gradient(135deg, #FF6B6B 0%, #FF9E9E 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-heart text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-dark">宠遇</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors">关于我们</a>
+                <a href="contact.html" class="text-primary font-medium">联系我们</a>
+            </nav>
+            <div class="flex items-center space-x-4" id="auth-container">
+                <a href="login.html" class="text-dark hover:text-primary transition-colors">登录</a>
+                <a href="register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors">注册</a>
+            </div>
+            <button class="md:hidden text-dark" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white shadow-md absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors py-2">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors py-2">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors py-2">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="contact.html" class="text-primary font-medium py-2">联系我们</a>
+                <div id="mobile-auth-container" class="flex flex-col space-y-2 pt-2 border-t">
+                    <a href="login.html" class="text-dark hover:text-primary transition-colors py-2">登录</a>
+                    <a href="register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors text-center">注册</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="bg-gradient-to-r from-pink-100 to-orange-100 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-dark">联系我们</h1>
+            <p class="text-gray-700 mt-2">如果您有任何问题或建议，欢迎随时联系我们</p>
+        </div>
+    </section>
+
+    <!-- 联系信息 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-dark mb-6">联系信息</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-map-marker text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-dark mb-2">地址</h3>
+                                <p class="text-gray-600">福建省福州市连江县凤城镇龙华二区</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-dark mb-2">电话</h3>
+                                <p class="text-gray-600">13705028226</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-dark mb-2">邮箱</h3>
+                                <p class="text-gray-600">3133785281@qq.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-clock-o text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-dark mb-2">工作时间</h3>
+                                <p class="text-gray-600">周一至周日 9:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-bold text-dark mb-4">关注我们</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                                <i class="fa fa-weixin"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                                <i class="fa fa-weibo"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                                <i class="fa fa-qq"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-dark mb-6">发送消息</h2>
+                    <form class="space-y-4" id="contact-form">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">姓名</label>
+                                <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入您的姓名" name="name">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">邮箱</label>
+                                <input type="email" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入您的邮箱" name="email">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">主题</label>
+                            <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入消息主题" name="subject">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">消息</label>
+                            <textarea class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" rows="5" placeholder="请输入您的消息" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-md hover:bg-secondary transition-colors font-medium">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">常见问题</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">以下是一些常见问题的解答，如果您有其他问题，欢迎联系我们。</p>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-dark">如何领养宠物？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="p-4 border-t border-gray-200 hidden">
+                        <p class="text-gray-600">您可以在我们的网站上浏览可领养的宠物，选择您喜欢的宠物后，填写领养申请表，我们会对您的申请进行审核，并安排面试和家访，通过后即可领养宠物。</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-dark">寄养服务需要提前多久预约？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="p-4 border-t border-gray-200 hidden">
+                        <p class="text-gray-600">建议提前3-7天预约寄养服务，特别是在节假日期间，需要提前更长时间预约以确保有位置。</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-dark">领养宠物需要支付费用吗？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="p-4 border-t border-gray-200 hidden">
+                        <p class="text-gray-600">领养宠物需要支付一定的领养费用，主要用于覆盖宠物的疫苗、绝育等医疗费用，具体费用根据宠物的种类和情况而定。</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-dark">如何成为志愿者？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="p-4 border-t border-gray-200 hidden">
+                        <p class="text-gray-600">如果您想成为志愿者，可以通过我们的网站填写志愿者申请表，我们会对您的申请进行审核，并安排相关培训。</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-dark">如何捐赠？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="p-4 border-t border-gray-200 hidden">
+                        <p class="text-gray-600">您可以通过我们的网站或联系我们进行捐赠，我们会将捐赠用于动物的医疗、食物和住所等方面。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-heart text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">宠遇</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">给每个生命一个温暖的家，让它们感受到爱与关怀。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="adopt.html" class="text-gray-400 hover:text-primary transition-colors">领养宠物</a></li>
+                        <li><a href="foster.html" class="text-gray-400 hover:text-primary transition-colors">宠物寄养</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">服务支持</h3>
+                    <ul class="space-y-2">
+                        <li><a href="adopt-guide.html" class="text-gray-400 hover:text-primary transition-colors">领养指南</a></li>
+                        <li><a href="foster-guide.html" class="text-gray-400 hover:text-primary transition-colors">寄养指南</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-primary transition-colors">隐私政策</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-primary transition-colors">用户协议</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">福建省福州市连江县凤城镇龙华二区</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">13705028226</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">3133785281@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 宠遇 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入用户管理脚本 -->
+    <script src="auth.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FAQ 切换
+        function toggleFAQ(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // 表单提交事件
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 检查用户是否登录
+            const currentUser = Users.getCurrentUser();
+            if (!currentUser) {
+                alert('请先登录或注册后再发送消息');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // 获取表单数据
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // 验证表单
+            if (!name || !email || !subject || !message) {
+                alert('请填写所有必填字段');
+                return;
+            }
+            
+            // 模拟发送邮件（实际项目中需要后端处理）
+            console.log('发送邮件到：3133785281@qq.com');
+            console.log('发件人：', email);
+            console.log('主题：', subject);
+            console.log('内容：', message);
+            
+            // 显示成功提示
+            alert('消息发送成功！我们会尽快回复您。');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

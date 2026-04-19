@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策 - 宠遇</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#FF9E9E',
+                        accent: '#FFD166',
+                        dark: '#333333',
+                        light: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            .bg-gradient {
+                background: linear-gradient(135deg, #FF6B6B 0%, #FF9E9E 100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-heart text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-dark">宠遇</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors">关于我们</a>
+                <a href="contact.html" class="text-dark hover:text-primary transition-colors">联系我们</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="text-dark hover:text-primary transition-colors">登录</a>
+                <a href="register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors">注册</a>
+            </div>
+            <button class="md:hidden text-dark" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white shadow-md absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors py-2">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors py-2">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors py-2">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="contact.html" class="text-dark hover:text-primary transition-colors py-2">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="bg-gradient-to-r from-pink-100 to-orange-100 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-dark">隐私政策</h1>
+            <p class="text-gray-700 mt-2">了解我们如何保护您的个人信息</p>
+        </div>
+    </section>
+
+    <!-- 隐私政策内容 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <p class="text-gray-600 mb-6">欢迎使用宠遇网站。我们重视您的隐私，致力于保护您的个人信息。本隐私政策说明了我们如何收集、使用、存储和保护您的个人信息。</p>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">1. 收集的信息</h2>
+                <p class="text-gray-600 mb-4">我们可能收集以下类型的个人信息：</p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-6">
+                    <li>个人基本信息：姓名、性别、年龄、联系方式（电话、邮箱、地址）等</li>
+                    <li>账户信息：用户名、密码、登录记录等</li>
+                    <li>宠物相关信息：宠物的种类、年龄、性别、健康状况等</li>
+                    <li>使用信息：您访问网站的记录、浏览历史、操作行为等</li>
+                    <li>其他信息：您通过联系表单、问卷调查等方式提供的信息</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">2. 信息使用</h2>
+                <p class="text-gray-600 mb-4">我们收集的信息将用于以下目的：</p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-6">
+                    <li>提供和改进我们的服务</li>
+                    <li>处理您的领养或寄养申请</li>
+                    <li>与您沟通，回复您的咨询</li>
+                    <li>发送相关的通知和更新</li>
+                    <li>进行数据分析，改善用户体验</li>
+                    <li>遵守法律法规的要求</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">3. 信息存储和保护</h2>
+                <p class="text-gray-600 mb-4">我们采取以下措施保护您的个人信息：</p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-6">
+                    <li>使用加密技术保护数据传输</li>
+                    <li>限制对个人信息的访问权限</li>
+                    <li>定期备份数据</li>
+                    <li>采取物理、技术和管理措施防止信息泄露</li>
+                </ul>
+                <p class="text-gray-600 mb-6">我们会在法律要求的期限内存储您的个人信息，或为实现本隐私政策所述目的所必需的时间内存储。</p>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">4. 信息共享</h2>
+                <p class="text-gray-600 mb-4">我们不会向第三方出售您的个人信息，但可能在以下情况下共享您的信息：</p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-6">
+                    <li>获得您的明确同意</li>
+                    <li>遵守法律法规的要求</li>
+                    <li>保护我们的权利、财产或安全</li>
+                    <li>与我们的合作伙伴共享，以提供更好的服务（但我们会要求他们保护您的信息）</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">5. 您的权利</h2>
+                <p class="text-gray-600 mb-4">您对您的个人信息享有以下权利：</p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-6">
+                    <li>访问和查看您的个人信息</li>
+                    <li>修改或更新您的个人信息</li>
+                    <li>删除您的个人信息</li>
+                    <li>限制或拒绝我们使用您的个人信息</li>
+                    <li>撤回您的同意</li>
+                </ul>
+                <p class="text-gray-600 mb-6">如果您想行使这些权利，请通过我们的联系方式与我们联系。</p>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">6. 网站使用条款</h2>
+                <p class="text-gray-600 mb-4">本网站可能包含指向其他网站的链接，我们不对这些网站的隐私政策负责。我们建议您查看这些网站的隐私政策。</p>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">7. 隐私政策更新</h2>
+                <p class="text-gray-600 mb-4">我们可能会不时更新本隐私政策。更新后的隐私政策将在网站上发布，您应定期查看。</p>
+
+                <h2 class="text-2xl font-bold text-dark mb-4">8. 联系我们</h2>
+                <p class="text-gray-600 mb-6">如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-6">
+                    <li>电话：13705028226</li>
+                    <li>邮箱：3133785281@qq.com</li>
+                    <li>地址：福建省福州市连江县凤城镇龙华二区</li>
+                </ul>
+
+                <p class="text-gray-600 mt-8">本隐私政策自2026年4月18日起生效。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-heart text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">宠遇</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">给每个生命一个温暖的家，让它们感受到爱与关怀。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="adopt.html" class="text-gray-400 hover:text-primary transition-colors">领养宠物</a></li>
+                        <li><a href="foster.html" class="text-gray-400 hover:text-primary transition-colors">宠物寄养</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">服务支持</h3>
+                    <ul class="space-y-2">
+                        <li><a href="adopt-guide.html" class="text-gray-400 hover:text-primary transition-colors">领养指南</a></li>
+                        <li><a href="foster-guide.html" class="text-gray-400 hover:text-primary transition-colors">寄养指南</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-primary transition-colors">隐私政策</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-primary transition-colors">用户协议</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">福建省福州市连江县凤城镇龙华二区</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">13705028226</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">3133785281@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 宠遇 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寄养指南 - 宠遇</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#FF9E9E',
+                        accent: '#FFD166',
+                        dark: '#333333',
+                        light: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            .bg-gradient {
+                background: linear-gradient(135deg, #FF6B6B 0%, #FF9E9E 100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-heart text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-dark">宠遇</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors">关于我们</a>
+                <a href="contact.html" class="text-dark hover:text-primary transition-colors">联系我们</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="text-dark hover:text-primary transition-colors">登录</a>
+                <a href="register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors">注册</a>
+            </div>
+            <button class="md:hidden text-dark" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white shadow-md absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors py-2">首页</a>
+                <a href="adopt.html" class="text-dark hover:text-primary transition-colors py-2">领养宠物</a>
+                <a href="foster.html" class="text-dark hover:text-primary transition-colors py-2">宠物寄养</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="contact.html" class="text-dark hover:text-primary transition-colors py-2">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="bg-gradient-to-r from-pink-100 to-orange-100 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-dark">寄养指南</h1>
+            <p class="text-gray-700 mt-2">了解如何为你的宠物选择合适的寄养服务</p>
+        </div>
+    </section>
+
+    <!-- 寄养指南内容 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold text-dark mb-6">寄养前准备</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">选择合适的寄养机构</h3>
+                            <p class="text-gray-600">根据宠物的种类、性格和需求，选择合适的寄养机构。可以查看机构的评价、环境和服务内容。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">提前预约</h3>
+                            <p class="text-gray-600">建议提前3-7天预约寄养服务，特别是在节假日期间，需要提前更长时间预约以确保有位置。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">准备必要物品</h3>
+                            <p class="text-gray-600">准备宠物的日常用品，包括食物、水碗、玩具、 bedding、牵引绳等，以及宠物的疫苗接种证明。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">告知特殊需求</h3>
+                            <p class="text-gray-600">如果宠物有特殊的饮食、医疗或行为需求，提前告知寄养机构，确保它们能够得到适当的照顾。</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-dark mb-6 mt-12">寄养流程</h2>
+                <div class="space-y-6">
+                    <div class="flex">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-xl">在线预约</h3>
+                            <p class="text-gray-600 mt-2">在我们的网站上选择合适的寄养机构，填写预约信息。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-xl">提交宠物信息</h3>
+                            <p class="text-gray-600 mt-2">提交宠物的基本信息、健康状况和特殊需求。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-xl">送宠入住</h3>
+                            <p class="text-gray-600 mt-2">按照约定时间将宠物送到寄养机构，与工作人员交接宠物的用品和注意事项。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-xl">定期更新</h3>
+                            <p class="text-gray-600 mt-2">寄养期间，我们会定期发送宠物的照片和视频，让你随时了解它们的状态。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">5</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-xl">接宠回家</h3>
+                            <p class="text-gray-600 mt-2">寄养结束后，按时接宠物回家，与工作人员了解宠物在寄养期间的情况。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold text-dark mb-6 mt-12">寄养期间注意事项</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fa fa-info-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">保持联系</h3>
+                            <p class="text-gray-600">保持与寄养机构的联系，及时了解宠物的情况。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-info-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">提供紧急联系人</h3>
+                            <p class="text-gray-600">提供紧急联系人信息，以便在紧急情况下能够及时联系到你。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-info-circle text-primary text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-dark">尊重机构规定</h3>
+                            <p class="text-gray-600">遵守寄养机构的规定，如探视时间、接送时间等。</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-dark mb-6 mt-12">常见问题</h2>
+                <div class="space-y-4">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-dark">寄养费用如何计算？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200 hidden">
+                            <p class="text-gray-600">寄养费用根据宠物的种类、体型、寄养时间和服务内容而定，具体费用可以在预约时咨询寄养机构。</p>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-dark">可以随时来看望宠物吗？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200 hidden">
+                            <p class="text-gray-600">可以，但建议提前预约，以免影响正常的寄养服务。</p>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-dark">如果宠物在寄养期间生病怎么办？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200 hidden">
+                            <p class="text-gray-600">我们会立即联系您，并将宠物送到合作的宠物医院进行治疗，费用由您承担。</p>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-dark">可以寄养多长时间？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200 hidden">
+                            <p class="text-gray-600">我们可以提供短期和长期寄养服务，具体时长可以根据您的需求协商确定。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-heart text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">宠遇</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">给每个生命一个温暖的家，让它们感受到爱与关怀。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="adopt.html" class="text-gray-400 hover:text-primary transition-colors">领养宠物</a></li>
+                        <li><a href="foster.html" class="text-gray-400 hover:text-primary transition-colors">宠物寄养</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">服务支持</h3>
+                    <ul class="space-y-2">
+                        <li><a href="adopt-guide.html" class="text-gray-400 hover:text-primary transition-colors">领养指南</a></li>
+                        <li><a href="foster-guide.html" class="text-gray-400 hover:text-primary transition-colors">寄养指南</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-primary transition-colors">隐私政策</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-primary transition-colors">用户协议</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">福建省福州市连江县凤城镇龙华二区</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">13705028226</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">3133785281@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 宠遇 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FAQ 切换
+        function toggleFAQ(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>
